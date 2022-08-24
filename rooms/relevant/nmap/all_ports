@@ -1,0 +1,15 @@
+# Nmap 7.92 scan initiated Wed Aug 24 00:19:09 2022 as: nmap -p- -oN nmap/all_ports 10.10.77.233
+Nmap scan report for 10.10.77.233
+Host is up (0.20s latency).
+Not shown: 65528 filtered tcp ports (no-response)
+PORT      STATE SERVICE
+80/tcp    open  http
+135/tcp   open  msrpc
+139/tcp   open  netbios-ssn
+445/tcp   open  microsoft-ds
+3389/tcp  open  ms-wbt-server
+49663/tcp open  unknown
+49669/tcp open  unknown
+
+Read data files from: /usr/bin/../share/nmap
+# Nmap done at Wed Aug 24 00:50:26 2022 -- 1 IP address (1 host up) scanned in 1876.91 seconds
