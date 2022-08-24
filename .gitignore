@@ -1,2 +1,11 @@
+# vpn files
 *.ovpn
+
+# connection script
 connect.sh
+
+# feroxbuster sessions
+ferox-*.state
+
+#hydra sessions
+hydra.restore
