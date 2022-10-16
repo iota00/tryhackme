@@ -2,7 +2,7 @@
 *.ovpn
 
 # connection script
-connect.sh
+connect*.sh
 
 # feroxbuster sessions
 ferox-*.state
