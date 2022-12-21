@@ -1,0 +1,15 @@
+# Nmap 7.80 scan initiated Sat Nov 12 19:51:11 2022 as: nmap -p- -oN nmap/all 10.10.172.152
+Nmap scan report for 10.10.172.152
+Host is up (0.056s latency).
+Not shown: 65527 closed ports
+PORT      STATE SERVICE
+80/tcp    open  http
+1337/tcp  open  waste
+3306/tcp  open  mysql
+5555/tcp  open  freeciv
+8080/tcp  open  http-proxy
+9999/tcp  open  abyss
+10708/tcp open  unknown
+46835/tcp open  unknown
+
+# Nmap done at Sat Nov 12 19:52:15 2022 -- 1 IP address (1 host up) scanned in 64.90 seconds

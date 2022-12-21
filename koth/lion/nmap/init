@@ -1,0 +1,73 @@
+# Nmap 7.80 scan initiated Sat Nov 12 19:40:40 2022 as: nmap -sC -sV -oN nmap/init 10.10.172.152
+Nmap scan report for 10.10.172.152
+Host is up (0.12s latency).
+Not shown: 966 closed ports, 29 filtered ports
+PORT     STATE SERVICE VERSION
+80/tcp   open  http    Apache httpd 2.4.18 ((Ubuntu))
+|_http-server-header: Apache/2.4.18 (Ubuntu)
+|_http-title: Site doesn't have a title (text/html).
+3306/tcp open  mysql   MySQL 5.7.19-0ubuntu0.16.04.1
+| mysql-info: 
+|   Protocol: 10
+|   Version: 5.7.19-0ubuntu0.16.04.1
+|   Thread ID: 6
+|   Capabilities flags: 63487
+|   Some Capabilities: IgnoreSigpipes, Speaks41ProtocolOld, ODBCClient, LongPassword, SupportsCompression, IgnoreSpaceBeforeParenthesis, DontAllowDatabaseTableColumn, SupportsTransactions, FoundRows, InteractiveClient, SupportsLoadDataLocal, Speaks41ProtocolNew, ConnectWithDatabase, Support41Auth, LongColumnFlag, SupportsAuthPlugins, SupportsMultipleStatments, SupportsMultipleResults
+|   Status: Autocommit
+|   Salt: ;\x08%@\x7F\x1D_)\x05\x7F\x1Bm(6A~OgA\x0D
+|_  Auth Plugin Name: mysql_native_password
+5555/tcp open  http    nginx 1.10.3 (Ubuntu)
+|_http-server-header: nginx/1.10.3 (Ubuntu)
+|_http-title: Site doesn't have a title (text/html; charset=UTF-8).
+8080/tcp open  http    nostromo 1.9.6
+|_http-server-header: nostromo 1.9.6
+|_http-title: Welcome
+9999/tcp open  abyss?
+| fingerprint-strings: 
+|   FourOhFourRequest, HTTPOptions: 
+|     HTTP/1.0 200 OK
+|     Date: Sat, 12 Nov 2022 18:41:09 GMT
+|     Content-Length: 0
+|   GenericLines, Help, Kerberos, LDAPSearchReq, LPDString, RTSPRequest, SIPOptions, SSLSessionReq, TLSSessionReq, TerminalServerCookie: 
+|     HTTP/1.1 400 Bad Request
+|     Content-Type: text/plain; charset=utf-8
+|     Connection: close
+|     Request
+|   GetRequest: 
+|     HTTP/1.0 200 OK
+|     Date: Sat, 12 Nov 2022 18:41:08 GMT
+|_    Content-Length: 0
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port9999-TCP:V=7.80%I=7%D=11/12%Time=636FE8C4%P=x86_64-pc-linux-gnu%r(G
+SF:etRequest,4B,"HTTP/1\.0\x20200\x20OK\r\nDate:\x20Sat,\x2012\x20Nov\x202
+SF:022\x2018:41:08\x20GMT\r\nContent-Length:\x200\r\n\r\n")%r(HTTPOptions,
+SF:4B,"HTTP/1\.0\x20200\x20OK\r\nDate:\x20Sat,\x2012\x20Nov\x202022\x2018:
+SF:41:09\x20GMT\r\nContent-Length:\x200\r\n\r\n")%r(FourOhFourRequest,4B,"
+SF:HTTP/1\.0\x20200\x20OK\r\nDate:\x20Sat,\x2012\x20Nov\x202022\x2018:41:0
+SF:9\x20GMT\r\nContent-Length:\x200\r\n\r\n")%r(GenericLines,67,"HTTP/1\.1
+SF:\x20400\x20Bad\x20Request\r\nContent-Type:\x20text/plain;\x20charset=ut
+SF:f-8\r\nConnection:\x20close\r\n\r\n400\x20Bad\x20Request")%r(RTSPReques
+SF:t,67,"HTTP/1\.1\x20400\x20Bad\x20Request\r\nContent-Type:\x20text/plain
+SF:;\x20charset=utf-8\r\nConnection:\x20close\r\n\r\n400\x20Bad\x20Request
+SF:")%r(Help,67,"HTTP/1\.1\x20400\x20Bad\x20Request\r\nContent-Type:\x20te
+SF:xt/plain;\x20charset=utf-8\r\nConnection:\x20close\r\n\r\n400\x20Bad\x2
+SF:0Request")%r(SSLSessionReq,67,"HTTP/1\.1\x20400\x20Bad\x20Request\r\nCo
+SF:ntent-Type:\x20text/plain;\x20charset=utf-8\r\nConnection:\x20close\r\n
+SF:\r\n400\x20Bad\x20Request")%r(TerminalServerCookie,67,"HTTP/1\.1\x20400
+SF:\x20Bad\x20Request\r\nContent-Type:\x20text/plain;\x20charset=utf-8\r\n
+SF:Connection:\x20close\r\n\r\n400\x20Bad\x20Request")%r(TLSSessionReq,67,
+SF:"HTTP/1\.1\x20400\x20Bad\x20Request\r\nContent-Type:\x20text/plain;\x20
+SF:charset=utf-8\r\nConnection:\x20close\r\n\r\n400\x20Bad\x20Request")%r(
+SF:Kerberos,67,"HTTP/1\.1\x20400\x20Bad\x20Request\r\nContent-Type:\x20tex
+SF:t/plain;\x20charset=utf-8\r\nConnection:\x20close\r\n\r\n400\x20Bad\x20
+SF:Request")%r(LPDString,67,"HTTP/1\.1\x20400\x20Bad\x20Request\r\nContent
+SF:-Type:\x20text/plain;\x20charset=utf-8\r\nConnection:\x20close\r\n\r\n4
+SF:00\x20Bad\x20Request")%r(LDAPSearchReq,67,"HTTP/1\.1\x20400\x20Bad\x20R
+SF:equest\r\nContent-Type:\x20text/plain;\x20charset=utf-8\r\nConnection:\
+SF:x20close\r\n\r\n400\x20Bad\x20Request")%r(SIPOptions,67,"HTTP/1\.1\x204
+SF:00\x20Bad\x20Request\r\nContent-Type:\x20text/plain;\x20charset=utf-8\r
+SF:\nConnection:\x20close\r\n\r\n400\x20Bad\x20Request");
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sat Nov 12 19:42:39 2022 -- 1 IP address (1 host up) scanned in 119.13 seconds

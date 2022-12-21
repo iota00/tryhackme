@@ -1,0 +1,27 @@
+# ---------------------------------------------------------
+./kerbrute userenum --dc <machine ip> -d <DC> userlist.txt
+# ---------------------------------------------------------
+Output:
+
+2022/12/20 03:10:49 >  [+] VALID USERNAME:	 james@spookysec.local
+2022/12/20 03:11:30 >  [+] VALID USERNAME:	 svc-admin@spookysec.local
+2022/12/20 03:12:01 >  [+] VALID USERNAME:	 James@spookysec.local
+2022/12/20 03:12:07 >  [+] VALID USERNAME:	 robin@spookysec.local
+2022/12/20 03:12:31 >  [+] VALID USERNAME:	 darkstar@spookysec.local
+2022/12/20 03:12:43 >  [+] VALID USERNAME:	 administrator@spookysec.local
+2022/12/20 03:14:18 >  [+] VALID USERNAME:	 backup@spookysec.local
+2022/12/20 03:14:27 >  [+] VALID USERNAME:	 paradox@spookysec.local
+2022/12/20 03:15:47 >  [+] VALID USERNAME:	 JAMES@spookysec.local
+2022/12/20 03:16:15 >  [+] VALID USERNAME:	 Robin@spookysec.local
+
+#---------------------------------------
+
+Valid users:
+
+james/James/JAMES
+svc-admin
+robin/Robin
+darkstar
+administrator
+backup
+paradox
