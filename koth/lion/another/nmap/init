@@ -1,0 +1,67 @@
+# Nmap 7.80 scan initiated Fri Jan 13 00:41:33 2023 as: nmap -sC -sV -oN nmap/init 10.10.113.241
+Nmap scan report for 10.10.113.241
+Host is up (1.2s latency).
+Not shown: 990 closed ports
+PORT      STATE    SERVICE         VERSION
+80/tcp    open     http            Apache httpd 2.4.18 ((Ubuntu))
+| http-methods: 
+|_  Supported Methods: GET HEAD POST OPTIONS
+|_http-server-header: Apache/2.4.18 (Ubuntu)
+668/tcp   filtered mecomm
+3306/tcp  open     tcpwrapped
+| mysql-info: 
+|   Protocol: 10
+|   Version: 5.7.19-0ubuntu0.16.04.1
+|   Thread ID: 15
+|   Capabilities flags: 63487
+|   Some Capabilities: LongPassword, ConnectWithDatabase, Speaks41ProtocolOld, SupportsTransactions, DontAllowDatabaseTableColumn, ODBCClient, Support41Auth, InteractiveClient, LongColumnFlag, FoundRows, Speaks41ProtocolNew, SupportsCompression, IgnoreSigpipes, IgnoreSpaceBeforeParenthesis, SupportsLoadDataLocal, SupportsMultipleStatments, SupportsMultipleResults, SupportsAuthPlugins
+|   Status: Autocommit
+|   Salt: \x03*51\x02g"\x0D\x06\x1Ffolr\x1056,%\x1F
+|_  Auth Plugin Name: mysql_native_password
+4125/tcp  filtered rww
+5555/tcp  open     http            nginx 1.10.3 (Ubuntu)
+| http-methods: 
+|_  Supported Methods: GET HEAD POST
+|_http-server-header: nginx/1.10.3 (Ubuntu)
+|_http-title: Site doesn't have a title (text/html; charset=UTF-8).
+8080/tcp  open     tcpwrapped
+| http-methods: 
+|_  Supported Methods: HEAD POST
+|_http-server-header: nostromo 1.9.6
+|_http-title: Welcome
+8085/tcp  filtered unknown
+9999/tcp  open     abyss?
+| fingerprint-strings: 
+|   FourOhFourRequest, HTTPOptions: 
+|     HTTP/1.0 200 OK
+|     Date: Thu, 12 Jan 2023 23:56:09 GMT
+|     Content-Length: 0
+|   GenericLines, RTSPRequest: 
+|     HTTP/1.1 400 Bad Request
+|     Content-Type: text/plain; charset=utf-8
+|     Connection: close
+|     Request
+|   GetRequest: 
+|     HTTP/1.0 200 OK
+|     Date: Thu, 12 Jan 2023 23:56:08 GMT
+|_    Content-Length: 0
+27715/tcp filtered unknown
+32774/tcp filtered sometimes-rpc11
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port9999-TCP:V=7.80%I=7%D=1/13%Time=63C09E18%P=x86_64-pc-linux-gnu%r(Ge
+SF:tRequest,4B,"HTTP/1\.0\x20200\x20OK\r\nDate:\x20Thu,\x2012\x20Jan\x2020
+SF:23\x2023:56:08\x20GMT\r\nContent-Length:\x200\r\n\r\n")%r(HTTPOptions,4
+SF:B,"HTTP/1\.0\x20200\x20OK\r\nDate:\x20Thu,\x2012\x20Jan\x202023\x2023:5
+SF:6:09\x20GMT\r\nContent-Length:\x200\r\n\r\n")%r(FourOhFourRequest,4B,"H
+SF:TTP/1\.0\x20200\x20OK\r\nDate:\x20Thu,\x2012\x20Jan\x202023\x2023:56:09
+SF:\x20GMT\r\nContent-Length:\x200\r\n\r\n")%r(GenericLines,67,"HTTP/1\.1\
+SF:x20400\x20Bad\x20Request\r\nContent-Type:\x20text/plain;\x20charset=utf
+SF:-8\r\nConnection:\x20close\r\n\r\n400\x20Bad\x20Request")%r(RTSPRequest
+SF:,67,"HTTP/1\.1\x20400\x20Bad\x20Request\r\nContent-Type:\x20text/plain;
+SF:\x20charset=utf-8\r\nConnection:\x20close\r\n\r\n400\x20Bad\x20Request"
+SF:);
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Fri Jan 13 00:58:02 2023 -- 1 IP address (1 host up) scanned in 989.22 seconds

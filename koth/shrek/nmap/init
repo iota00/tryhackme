@@ -1,0 +1,82 @@
+# Nmap 7.80 scan initiated Wed Jan 11 22:22:14 2023 as: nmap -sC -sV -oN nmap/init 10.10.139.21
+Nmap scan report for 10.10.139.21
+Host is up (1.7s latency).
+Not shown: 957 closed ports, 36 filtered ports
+PORT     STATE SERVICE VERSION
+21/tcp   open  ftp     vsftpd 3.0.2
+22/tcp   open  ssh     OpenSSH 7.4 (protocol 2.0)
+| ssh-hostkey: 
+|   2048 19:cd:2a:1d:a1:fd:2b:82:c2:de:27:00:90:1b:52:a7 (RSA)
+|   256 dd:99:85:18:26:9c:3c:7e:87:32:df:2b:43:18:b8:b8 (ECDSA)
+|_  256 a2:35:a3:7b:19:af:58:31:fd:6c:40:55:59:4d:7d:52 (ED25519)
+80/tcp   open  http    Apache httpd 2.4.6 ((CentOS) PHP/7.1.33)
+| http-methods: 
+|_  Potentially risky methods: TRACE
+| http-robots.txt: 1 disallowed entry 
+|_/Cpxtpt2hWCee9VFa.txt
+|_http-server-header: Apache/2.4.6 (CentOS) PHP/7.1.33
+|_http-title: Site doesn't have a title (text/html; charset=UTF-8).
+3306/tcp open  mysql   MySQL (unauthorized)
+8009/tcp open  ajp13   Apache Jserv (Protocol v1.3)
+|_ajp-methods: Failed to get a valid response for the OPTION request
+8080/tcp open  http    Apache Tomcat/Coyote JSP engine 1.1
+|_http-favicon: Apache Tomcat
+|_http-server-header: Apache-Coyote/1.1
+|_http-title: Apache Tomcat/7.0.88
+9999/tcp open  abyss?
+| fingerprint-strings: 
+|   GenericLines, Help, Kerberos, LDAPSearchReq, LPDString, RTSPRequest, SIPOptions, SSLSessionReq, TLSSessionReq: 
+|     HTTP/1.1 400 Bad Request
+|     Content-Type: text/plain; charset=utf-8
+|     Connection: close
+|     Request
+|   GetRequest: 
+|     HTTP/1.0 200 OK
+|     Accept-Ranges: bytes
+|     Content-Length: 5
+|     Content-Type: text/plain; charset=utf-8
+|     Last-Modified: Wed, 11 Jan 2023 21:36:48 GMT
+|     Date: Wed, 11 Jan 2023 21:43:15 GMT
+|     I0ta
+|   HTTPOptions: 
+|     HTTP/1.0 200 OK
+|     Accept-Ranges: bytes
+|     Content-Length: 5
+|     Content-Type: text/plain; charset=utf-8
+|     Last-Modified: Wed, 11 Jan 2023 21:36:48 GMT
+|     Date: Wed, 11 Jan 2023 21:43:19 GMT
+|_    I0ta
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port9999-TCP:V=7.80%I=7%D=1/11%Time=63BF2D77%P=x86_64-pc-linux-gnu%r(Ge
+SF:tRequest,BD,"HTTP/1\.0\x20200\x20OK\r\nAccept-Ranges:\x20bytes\r\nConte
+SF:nt-Length:\x205\r\nContent-Type:\x20text/plain;\x20charset=utf-8\r\nLas
+SF:t-Modified:\x20Wed,\x2011\x20Jan\x202023\x2021:36:48\x20GMT\r\nDate:\x2
+SF:0Wed,\x2011\x20Jan\x202023\x2021:43:15\x20GMT\r\n\r\nI0ta\n")%r(HTTPOpt
+SF:ions,BD,"HTTP/1\.0\x20200\x20OK\r\nAccept-Ranges:\x20bytes\r\nContent-L
+SF:ength:\x205\r\nContent-Type:\x20text/plain;\x20charset=utf-8\r\nLast-Mo
+SF:dified:\x20Wed,\x2011\x20Jan\x202023\x2021:36:48\x20GMT\r\nDate:\x20Wed
+SF:,\x2011\x20Jan\x202023\x2021:43:19\x20GMT\r\n\r\nI0ta\n")%r(GenericLine
+SF:s,67,"HTTP/1\.1\x20400\x20Bad\x20Request\r\nContent-Type:\x20text/plain
+SF:;\x20charset=utf-8\r\nConnection:\x20close\r\n\r\n400\x20Bad\x20Request
+SF:")%r(RTSPRequest,67,"HTTP/1\.1\x20400\x20Bad\x20Request\r\nContent-Type
+SF::\x20text/plain;\x20charset=utf-8\r\nConnection:\x20close\r\n\r\n400\x2
+SF:0Bad\x20Request")%r(Help,67,"HTTP/1\.1\x20400\x20Bad\x20Request\r\nCont
+SF:ent-Type:\x20text/plain;\x20charset=utf-8\r\nConnection:\x20close\r\n\r
+SF:\n400\x20Bad\x20Request")%r(SSLSessionReq,67,"HTTP/1\.1\x20400\x20Bad\x
+SF:20Request\r\nContent-Type:\x20text/plain;\x20charset=utf-8\r\nConnectio
+SF:n:\x20close\r\n\r\n400\x20Bad\x20Request")%r(TLSSessionReq,67,"HTTP/1\.
+SF:1\x20400\x20Bad\x20Request\r\nContent-Type:\x20text/plain;\x20charset=u
+SF:tf-8\r\nConnection:\x20close\r\n\r\n400\x20Bad\x20Request")%r(Kerberos,
+SF:67,"HTTP/1\.1\x20400\x20Bad\x20Request\r\nContent-Type:\x20text/plain;\
+SF:x20charset=utf-8\r\nConnection:\x20close\r\n\r\n400\x20Bad\x20Request")
+SF:%r(LPDString,67,"HTTP/1\.1\x20400\x20Bad\x20Request\r\nContent-Type:\x2
+SF:0text/plain;\x20charset=utf-8\r\nConnection:\x20close\r\n\r\n400\x20Bad
+SF:\x20Request")%r(LDAPSearchReq,67,"HTTP/1\.1\x20400\x20Bad\x20Request\r\
+SF:nContent-Type:\x20text/plain;\x20charset=utf-8\r\nConnection:\x20close\
+SF:r\n\r\n400\x20Bad\x20Request")%r(SIPOptions,67,"HTTP/1\.1\x20400\x20Bad
+SF:\x20Request\r\nContent-Type:\x20text/plain;\x20charset=utf-8\r\nConnect
+SF:ion:\x20close\r\n\r\n400\x20Bad\x20Request");
+Service Info: OS: Unix
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Wed Jan 11 22:46:39 2023 -- 1 IP address (1 host up) scanned in 1465.67 seconds

