@@ -1,0 +1,51 @@
+# Daily Bugle
+
+---
+
+```bash
+export IP=
+```
+
+---
+
+## Task 1
+
+* Access the web server, who robbed the bank?
+
+```
+SpiderMan
+```
+
+## Task 2
+
+* What is the Joomla version?
+
+```
+3.7.0
+```
+
+> *Instead of using SQLMap, why not use a python script!*
+
+* What is Jonah's cracked password?
+
+```
+spiderman123
+```
+
+* What is the user flag?
+
+```
+27a260fe3cba712cfdedb1c86d80442e
+```
+
+* What is the root flag?
+
+```
+eec3d53292b1821868266858d7fa6f79
+```
+
+## Task 3
+
+```
+No Answer Needed
+```
