@@ -3,7 +3,7 @@
 ---
 
 ```bash
-export IP=10.10.77.233
+export IP=10.10.246.75
 ```
 
 ---
@@ -41,8 +41,12 @@ Note - Nothing in this room requires Metasploit
 * User Flag
 
 ```
-
+THM{fdk4ka34vk346ksxfr21tg789ktf45}
 ```
 
 * Root Flag
 
+
+```
+THM{1fk5kf469devly1gl320zafgl345pv}
+```
