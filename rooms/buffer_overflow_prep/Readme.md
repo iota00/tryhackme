@@ -251,13 +251,15 @@ padding = "\x90" * 16
 * What is the EIP offset for OVERFLOW1?
 
 ```
-2000
+1978
 ```
 
 * In byte order (e.g. \x00\x01\x02) and including the null byte \x00, what were the badchars for OVERFLOW1?
 
 ```
-\x00\x07\x08\x2e\x2f\xa0\xa1
+#\x00\x07\x08\x2e\x2f\xa0\xa1
+
+\x00\x07\x2e\xa0
 ```
 
 ## Task 3
@@ -269,13 +271,15 @@ padding = "\x90" * 16
 * What is the EIP offset for OVERFLOW2?
 
 ```
-
+634
 ```
 
 * In byte order (e.g. \x00\x01\x02) and including the null byte \x00, what were the badchars for OVERFLOW2?
 
 ```
+# \x00\x23\x24\x3c\x3d\x83\x84\xba\xbb
 
+\x00\x23\x3c\x83\xba
 ```
 
 ## Task 4
@@ -286,13 +290,15 @@ padding = "\x90" * 16
 * What is the EIP offset for OVERFLOW3?
 
 ```
-
+1274
 ```
 
 * In byte order (e.g. \x00\x01\x02) and including the null byte \x00, what were the badchars for OVERFLOW3?
 
 ```
+# \x11\x12\x40\x41\x5f\x60\xb8\xb9\xee\xef
 
+\x11\x40\x5f\xb8\xee
 ```
 
 ## Task 5

