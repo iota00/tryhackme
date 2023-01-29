@@ -309,13 +309,14 @@ padding = "\x90" * 16
 * What is the EIP offset for OVERFLOW4?
 
 ```
-
+2026
 ```
 
 * In byte order (e.g. \x00\x01\x02) and including the null byte \x00, what were the badchars for OVERFLOW4?
 
 ```
-
+# \x00\xa9\xaa\xcd\xce\xd4\xd5
+\x00\xa9\xcd\xd4
 ```
 
 
