@@ -257,8 +257,6 @@ padding = "\x90" * 16
 * In byte order (e.g. \x00\x01\x02) and including the null byte \x00, what were the badchars for OVERFLOW1?
 
 ```
-#\x00\x07\x08\x2e\x2f\xa0\xa1
-
 \x00\x07\x2e\xa0
 ```
 
@@ -277,8 +275,6 @@ padding = "\x90" * 16
 * In byte order (e.g. \x00\x01\x02) and including the null byte \x00, what were the badchars for OVERFLOW2?
 
 ```
-# \x00\x23\x24\x3c\x3d\x83\x84\xba\xbb
-
 \x00\x23\x3c\x83\xba
 ```
 
@@ -296,9 +292,7 @@ padding = "\x90" * 16
 * In byte order (e.g. \x00\x01\x02) and including the null byte \x00, what were the badchars for OVERFLOW3?
 
 ```
-# \x11\x12\x40\x41\x5f\x60\xb8\xb9\xee\xef
-
-\x11\x40\x5f\xb8\xee
+\x00\x11\x40\x5f\xb8\xee
 ```
 
 ## Task 5
@@ -315,7 +309,6 @@ padding = "\x90" * 16
 * In byte order (e.g. \x00\x01\x02) and including the null byte \x00, what were the badchars for OVERFLOW4?
 
 ```
-# \x00\xa9\xaa\xcd\xce\xd4\xd5
 \x00\xa9\xcd\xd4
 ```
 
@@ -345,13 +338,13 @@ padding = "\x90" * 16
 * What is the EIP offset for OVERFLOW6?
 
 ```
-
+1034
 ```
 
 * In byte order (e.g. \x00\x01\x02) and including the null byte \x00, what were the badchars for OVERFLOW6?
 
 ```
-16
+\x00\x08\x2c\xad
 ```
 
 ## Task 8
@@ -362,13 +355,13 @@ padding = "\x90" * 16
 * What is the EIP offset for OVERFLOW7?
 
 ```
-
+1306
 ```
 
 * In byte order (e.g. \x00\x01\x02) and including the null byte \x00, what were the badchars for OVERFLOW7?
 
-```20
-
+```
+\x00\x8c\xae\xbe\xfb
 ```
 
 ## Task 9
@@ -379,13 +372,13 @@ padding = "\x90" * 16
 * What is the EIP offset for OVERFLOW8?
 
 ```
-
+1786
 ```
 
 * In byte order (e.g. \x00\x01\x02) and including the null byte \x00, what were the badchars for OVERFLOW8?
 
-```20
-
+```
+\x00\x1d\x2e\xc7\xee
 ```
 
 ## Task 10
@@ -396,13 +389,13 @@ padding = "\x90" * 16
 * What is the EIP offset for OVERFLOW9?
 
 ```
-
+1514
 ```
 
 * In byte order (e.g. \x00\x01\x02) and including the null byte \x00, what were the badchars for OVERFLOW9?
 
-```20
-
+```
+\x00\x04\x3e\x3f\xe1
 ```
 
 ## Task 11
@@ -413,11 +406,11 @@ padding = "\x90" * 16
 * What is the EIP offset for OVERFLOW10?
 
 ```
-
+537
 ```
 
 * In byte order (e.g. \x00\x01\x02) and including the null byte \x00, what were the badchars for OVERFLOW10?
 
-```24
-
+```
+\x00\xa0\xad\xbe\xde\xef
 ```
